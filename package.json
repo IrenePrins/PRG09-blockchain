@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/IrenePrins/PRG09-blockchain#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "js-sha256": "^0.9.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0"
   }
 }
