@@ -1,7 +1,6 @@
 // import { sha256 } from '../node_modules/js-sha256';
-
 let hash;
-text = 'text';
+text = 'text1';
 
 describe("Unit test hashing", () => {
     it("should convert the numbers into ascii code", () => {
@@ -10,8 +9,14 @@ describe("Unit test hashing", () => {
 
         //recursive function
         function ascii(start, length, asciiKeys) {
-            if (start < length) {   
-                asciiKeys.push(text[start].charCodeAt(0));
+            let letters = /^[A-Za-z]+$/;
+
+            if (start < length) {
+                if(text[start].match(letters)) {
+                    asciiKeys.push(text[start].charCodeAt(0));
+                } else {
+                    asciiKeys.push(parseInt(text[start]))
+                }
             } else {
                 return asciiKeys
             }
@@ -21,7 +26,7 @@ describe("Unit test hashing", () => {
 
         ascii(0, length, asciiKeys)
 
-        expect(asciiKeys).toEqual([116, 101, 120, 116])
+        expect(asciiKeys).toEqual([116, 101, 120, 116, 1])
     })
 
     it("should transform every digit in a array", () => {
@@ -97,31 +102,7 @@ describe("Unit test hashing", () => {
 
     it("should get the first index and second index from the motherarray and sum module add new array", () => {
         let motherArray = [[1, 1, 6, 1, 0, 1, 1, 2, 0, 1], [1, 6, 0, 1, 2, 3, 4, 5, 6, 7], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
-        // let firstIndex = motherArray.splice(0, 1)
-        // let secondIndex = motherArray.splice(0, 1)
         let newSum = []
-
-        // function loopThroughMotherArray(result) {
-            // for(let i = 0; i < motherArray.length; i++) {
-            //     let firstIndex;
-            //     let result;
-
-            //     if(i == 0) {
-            //         firstIndex = motherArray.slice(0, 1);
-            //         console.log('eerst')
-            //     } else {
-            //         firstIndex = [result];
-            //         console.log('result', result)
-            //         console.log('twee')
-            //     }
-                
-            //     console.log('firstIndex', firstIndex)
-            //     let secondIndex = motherArray.splice(0, 1)
-            //     result = sumUpArrays(0, firstIndex.length, firstIndex, secondIndex, newSum);
-    
-            //     // console.log(result); //2
-            // }
-        // }
 
         let result = loopThroughMotherArray(0, motherArray.length, motherArray.splice(0, 1))
         let result2 = result[0];
@@ -142,30 +123,6 @@ describe("Unit test hashing", () => {
             if (start < length) { 
                 let sum = (result[0][start] + next[0][start])%10
                 newSum[0].push(sum);
-
-            //     if (start === firstIndex[0].length) 
-            //     {
-            //         for (x = start; x < secondIndex[0].length; x++)   {
-            //         result.push(secondIndex[0][x]);
-            //         }
-            //     } 
-            //     else
-            //     {
-            //     for (x = start; x < firstIndex[0].length; x++) 
-            //         {
-            //         result.push(firstIndex[0][x]);
-            //         }
-            //     }
-            // } else if (start == firstIndex[0].length) {
-            //     for (x = start; x < secondIndex[0].length; x++)   {
-            //         result.push(secondIndex[0][x]);
-            //     }
-            // } else {
-            //     for (x = start; x < firstIndex[0].length; x++) {
-            //         result.push(firstIndex[0][x]);
-            //     }
-
-                // return newSum;
             } else {
                 return newSum;
             }
